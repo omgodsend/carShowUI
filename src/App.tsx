@@ -4,7 +4,7 @@ import theme from './theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import CarList from './Components/CarList';
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 
 
@@ -12,6 +12,7 @@ const App = () => {
   return (
     // <ThemeProvider theme={theme}>
     <Container maxWidth="lg" /* style={{ backgroundColor: theme.palette.background.default, height: '100vh' }} */>
+   
     <AppBar position="static">
           <Toolbar>
             <Typography variant="h3" style={{ textAlign: 'center', width: '100%' }}>
@@ -22,6 +23,7 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
       <CarList />
         </QueryClientProvider>
+
       </Container>
     // </ThemeProvider>
   );
