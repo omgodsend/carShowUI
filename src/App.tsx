@@ -2,7 +2,7 @@
 import { ThemeProvider, Container, AppBar, Toolbar, Typography } from '@mui/material';
 import theme from './theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import CarList from './Components/CarList';
+import Login2 from './Components/Login2';
 
 export const queryClient = new QueryClient()
 
@@ -21,7 +21,7 @@ const App = () => {
           </Toolbar>
         </AppBar>
         <QueryClientProvider client={queryClient}>
-      <CarList />
+      <Login2 />
         </QueryClientProvider>
 
       </Container>

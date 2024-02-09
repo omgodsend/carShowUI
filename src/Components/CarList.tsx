@@ -1,6 +1,6 @@
 import {  useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import {CarResponse} from './types.ts'
+
+
 import { DataGrid,GridCellParams,GridColDef } from "@mui/x-data-grid";
 
 
@@ -8,6 +8,9 @@ import { Button, Snackbar } from "@mui/material";
 import { deleteCar, getCars } from "../carapi.ts";
 import { useState } from "react";
 import Confirmation from "./Confirmation.tsx";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import AddCar from "./AddCar.tsx";
+import EditCar from "./EditCar.tsx";
 
 
 
@@ -48,7 +51,15 @@ const CarList = () => {
     {field: 'registerNumber', headerName: 'Reg.nr.', width: 150},
     {field: 'year', headerName: 'Year', width: 150},
     {field: 'price', headerName: 'Price', width: 150},
-    //Carlist.tsx
+    { field:'edit',
+    headerName:'',
+  width:90,
+ sortable:false,
+filterable:false,
+renderCell:(params:GridCellParams)=> 
+<EditCar cardata={params.row} />
+},
+   
 {
   field: "delete",
   headerName: "",
@@ -63,7 +74,7 @@ const CarList = () => {
     make:params.row.make,
   model:params.row.model
 }) }
-   >Delelte</Button>
+   ><DeleteForeverIcon /></Button>
    <Confirmation 
    open={openConfirmation?.id===params.row.id} 
    make={openConfirmation?.make}
@@ -92,6 +103,7 @@ const CarList = () => {
   } else {
     return (
       <>
+     
       <DataGrid 
       rows={data}
       columns={columns}
@@ -105,6 +117,7 @@ const CarList = () => {
       }}
       
       />
+       <AddCar />
       <Snackbar    open ={showSnakBar} 
       autoHideDuration={2000}
       onClose={()=>setSnakBar(false)}
